@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Best Teacher</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        font-family: 'Segoe UI', sans-serif;
+        background: #000;
+        color: white;
+    }
+
+    /* HEART BACKGROUND */
+    .heart {
+        position: fixed;
+        bottom: -20px;
+        font-size: 20px;
+        animation: float 8s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-110vh); }
+    }
+
+    /* TEXT BOX */
+    .box {
+        position: relative;
+        max-width: 800px;
+        height: 70vh;
+        margin: 40px auto;
+        padding: 30px;
+        background: rgba(0,0,0,0.6);
+        border-radius: 20px;
+        overflow-y: auto;
+        font-size: 26px;
+        line-height: 1.6;
+    }
+
+    /* SUBMIT BUTTON */
+    #submitBtn {
+        display: none;
+        margin: 20px auto;
+        padding: 15px 40px;
+        font-size: 24px;
+        border: none;
+        border-radius: 30px;
+        background: hotpink;
+        color: white;
+        cursor: pointer;
+    }
+
+    /* FINAL SCREEN */
+    #final {
+        display: none;
+        position: absolute;
+        inset: 0;
+        background: #000;
+        text-align: center;
+        padding-top: 120px;
+        font-size: 50px;
+    }
+
+    .balloon {
+        position: fixed;
+        bottom: -50px;
+        font-size: 40px;
+        animation: balloon 6s linear infinite;
+    }
+
+    @keyframes balloon {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-120vh); }
+    }
+</style>
+</head>
+<body>
+
+<div class="box" id="text"></div>
+
+<button id="submitBtn" onclick="showFinal()">SUBMIT ❤️</button>
+
+<div id="final">
+    💖 YOU ARE MY BEST TEACHER 💖
+</div>
+
+<script>
+const message = `Sudha Ma'am, you are not just a teacher but a true guide and inspiration in my life.
+You are incredibly sharp-minded and passionate about teaching.
+You make even the most difficult topics easy to understand.
+Your patience, kindness, and dedication create a positive learning environment.
+You have boosted my confidence and inspired me to always give my best.
+Thank you for shaping my future and guiding me with love and wisdom.`;
+
+let i = 0;
+const textBox = document.getElementById("text");
+
+function typeText() {
+    if (i < message.length) {
+        textBox.innerHTML += message.charAt(i);
+        textBox.scrollTop = textBox.scrollHeight;
+        i++;
+        setTimeout(typeText, 40);
+    } else {
+        document.getElementById("submitBtn").style.display = "block";
+    }
+}
+typeText();
+
+/* HEART BACKGROUND */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.color = `hsl(${Math.random()*360},100%,60%)`;
+    heart.style.fontSize = Math.random() * 30 + 15 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+}, 300);
+
+/* FINAL ANIMATION */
+function showFinal() {
+    document.querySelector(".box").style.display = "none";
+    document.getElementById("submitBtn").style.display = "none";
+    document.getElementById("final").style.display = "block";
+
+    setInterval(() => {
+        const b = document.createElement("div");
+        b.className = "balloon";
+        b.innerHTML = "💖";
+        b.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 6000);
+    }, 200);
+}
+</script>
+
+</body>
+</html>
+S
